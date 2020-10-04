@@ -24,8 +24,8 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 #loads the Google Movement data
-
-movement_df = pd.read_csv("Global_Mobility_Report.csv")
+root = r"C:\Users\antob\OneDrive - Broward College\_FSU_\IDEA Grant\Python Code"
+movement_df = pd.read_csv(root + "\Global_Mobility_Report.csv")
 
 
 GroceryMovement_filtered = movement_df.loc[movement_df["sub_region_1"] ==  "Florida",["date","grocery", "sub_region_2"]]
@@ -68,6 +68,9 @@ GroceryMovement_df.fillna(value = 0 )
 -------------------------------------------------------------------------------------------
 '''
 
+
+
+
 #this strips the date, a KEY, and it's date and delta_change it's VALUE
 dates_per_county = {}
 
@@ -82,22 +85,22 @@ for index,row in GroceryMovement_df.iterrows():
 
 
 
+list_of_counties = GroceryMovement_df.sub_region_2.unique()
 county_value_dict = {}
-list_of_counties = []
+#group by dates and itter through that list 
 
+
+for i in range (len(list_of_counties)):
+    county_value_dict[county_name].append(list_of_counties(i))
+    
+
+
+#makes a dict paring counties to their numeric movement value
 for index,row in GroceryMovement_df.iterrows():
     county_date_change = (row["grocery"])
-    county_name =row["sub_region_2"]
-    if county_name in county_value_dict:
-        county_value_dict[county_name].append(county_date_change)
-    else: 
-        county_value_dict[county_name] = [county_date_change]
+    county_value_dict[county_name] = [county_date_change]
 
 
-for index,row in GroceryMovement_df.iterrows():
-    county_name =row["sub_region_2"]
-    if county_name not in list_of_counties:
-        list_of_counties.append(county_name)
 
 '''
                            Evaluating Lengths for the Loops 
