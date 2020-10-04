@@ -84,21 +84,24 @@ for index,row in GroceryMovement_df.iterrows():
         dates_per_county[date] = [county_date_change]
 
 
+#Gives all the counties found in the dataset
+list_of_counties = (GroceryMovement_df.sub_region_2.unique())
+list_of_counties = list_of_counties.tolist()
 
-list_of_counties = GroceryMovement_df.sub_region_2.unique()
-county_value_dict = {}
-#group by dates and itter through that list 
+#Dict that holds counties and all their movement values
+county_value_dict = {k:None for k in list_of_counties}
 
 
-for i in range (len(list_of_counties)):
-    county_value_dict[county_name].append(list_of_counties(i))
+#grouped = GroceryMovement_df.groupby('sub_region_2', axis='index')   
+
+
+# #makes a dict paring counties to their numeric movement value
+# for i in range (len(GroceryMovement_df)):
+#     #if the sub_reg2 = county name: county_value_dict 
+#     county_date_change = (row["grocery"])
+#     county_name = (row["sub_region_2"])
     
-
-
-#makes a dict paring counties to their numeric movement value
-for index,row in GroceryMovement_df.iterrows():
-    county_date_change = (row["grocery"])
-    county_value_dict[county_name] = [county_date_change]
+#     county_value_dict[county_name] = [county_date_change]
 
 
 
@@ -201,24 +204,24 @@ for key in infected_counties_per_timestep.keys():
 '''
 
 #Saves the dataset
-delta_df = df = pd.DataFrame.from_dict(num_big_deltas_per_date, orient="index")
-delta_df.to_csv (path_or_buf ='_4_Florida_grocery_movement.csv',index = True)
+# delta_df = df = pd.DataFrame.from_dict(num_big_deltas_per_date, orient="index")
+# delta_df.to_csv (path_or_buf ='_4_Florida_grocery_movement.csv',index = True)
 
 
-#Time Series Plot
-delta_df.plot( title = "Florida Panic Buying Timeline", color = "#333333")
+# #Time Series Plot
+# delta_df.plot( title = "Florida Panic Buying Timeline", color = "#333333")
 
-#Stay at home marker 
-plt.axvline(x = 48, color='#D63931', linestyle=("--")) 
+# #Stay at home marker 
+# plt.axvline(x = 48, color='#D63931', linestyle=("--")) 
 
 
-#annotation/arrow
-plt.annotate("State wide stay at home order", xy = (48, 60),
-              xytext = (49, 60)) 
+# #annotation/arrow
+# plt.annotate("State wide stay at home order", xy = (48, 60),
+#               xytext = (49, 60)) 
 
-plt.legend().remove()
-plt.margins(0)
-plt.ylabel("Number of Panic Buying Counties", fontsize=10)
-plt.xlabel("Dates", fontsize=10)
-plt.savefig("RESULTS_FloridaInfectedDataPlot.png", dpi=1200)
-plt.show()
+# plt.legend().remove()
+# plt.margins(0)
+# plt.ylabel("Number of Panic Buying Counties", fontsize=10)
+# plt.xlabel("Dates", fontsize=10)
+# plt.savefig("RESULTS_FloridaInfectedDataPlot.png", dpi=1200)
+# plt.show()
