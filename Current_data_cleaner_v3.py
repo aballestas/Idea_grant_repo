@@ -95,13 +95,13 @@ county_value_dict = {k:None for k in list_of_counties}
 #grouped = GroceryMovement_df.groupby('sub_region_2', axis='index')   
 
 
-# #makes a dict paring counties to their numeric movement value
-# for i in range (len(GroceryMovement_df)):
-#     #if the sub_reg2 = county name: county_value_dict 
-#     county_date_change = (row["grocery"])
-#     county_name = (row["sub_region_2"])
-    
-#     county_value_dict[county_name] = [county_date_change]
+#makes a dict paring counties to their numeric movement value
+for i in range (len(GroceryMovement_df)):
+    #if the sub_reg2 = county name: county_value_dict 
+    county_date_change = (row["grocery"])
+    county_name = (row["sub_region_2"])
+    if county_name == GroceryMovement_df.iloc[i]:
+        county_value_dict[county_name] = [county_date_change]
 
 
 
